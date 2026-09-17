@@ -4,9 +4,12 @@ import {
   Building2,
   Check,
   ChevronDown,
+  Clock3,
   FileSearch,
   Menu,
   Network,
+  Newspaper,
+  Play,
   Search,
   Settings2,
   ShieldCheck,
@@ -25,8 +28,23 @@ const navItems = [
   ["Tổng quan", "tong-quan"],
   ["Tính năng", "tinh-nang"],
   ["Tích hợp", "tich-hop"],
-  ["Triển khai", "trien-khai"],
+  ["Case study", "case-study"],
+  ["Tin tức", "tin-tuc"],
   ["Câu hỏi thường gặp", "faq"],
+] as const;
+
+const partnerPlaceholders = ["Đối tác 01", "Đối tác 02", "Đối tác 03", "Đối tác 04", "Đối tác 05", "Đối tác 06"] as const;
+
+const caseStudies = [
+  { tag: "Tình huống tham khảo", title: "Quản lý lựa chọn cookies trên hệ thống website", text: "Khung nội dung chờ thông tin triển khai và kết quả đã được khách hàng xác minh.", image: cookieBanner },
+  { tag: "Tình huống tham khảo", title: "Tập trung bản ghi consent từ nhiều điểm chạm", text: "Khung nội dung chờ thông tin doanh nghiệp, phạm vi kết nối và kết quả thực tế.", image: consentList },
+  { tag: "Tình huống tham khảo", title: "Theo dõi và đối soát sự đồng ý qua báo cáo", text: "Khung nội dung chờ số liệu, trích dẫn và quyền sử dụng hình ảnh khách hàng.", image: consentReport },
+] as const;
+
+const newsPlaceholders = [
+  ["Kiến thức CMP", "Doanh nghiệp nên chuẩn bị gì trước khi triển khai quản lý consent?"],
+  ["Quản lý cookies", "Từ phân loại cookies đến ghi nhận lựa chọn của người dùng"],
+  ["Vận hành dữ liệu", "Kết nối các điểm thu thập consent với hệ thống doanh nghiệp"],
 ] as const;
 
 type Feature = {
@@ -154,15 +172,15 @@ export function FptCmpHome() {
   const openImage=(src:string,alt:string)=>setModal({src,alt});
   return <><Header /><main>
     <section className="hero" id="tong-quan"><div className="container">
-      <div className="hero-copy"><p className="eyebrow">FPT Consent Management Platform</p><h1>Thu thập, quản lý và tra cứu sự đồng ý trên một nền tảng</h1><p className="hero-description">FPT CMP giúp doanh nghiệp quản lý sự đồng ý xử lý dữ liệu cá nhân và lựa chọn cookies, lưu bằng chứng và theo dõi trạng thái consent tập trung.</p><ul className="hero-points"><li><Check />Thu thập lựa chọn theo từng mục đích.</li><li><Check />Quản lý và tra cứu bản ghi consent.</li><li><Check />Theo dõi báo cáo trên giao diện tập trung.</li></ul><Button variant="secondary" onClick={() => scrollTo("tinh-nang")}>Khám phá tính năng <ArrowRight size={18} /></Button></div>
-      <div className="hero-grid"><ProductImage src={consentReport} alt="Giao diện báo cáo Consent của FPT CMP" priority onOpen={openImage} /><aside className="hero-form"><p className="form-kicker">Xem giao diện thực tế</p><h2>Đăng ký xem demo FPT CMP</h2><LeadForm variant="hero" /></aside></div>
+      <div className="hero-copy"><p className="eyebrow">FPT Consent Management Platform</p><h1>Đơn giản hóa việc thu thập và quản lý sự đồng ý</h1><p className="hero-description">FPT CMP giúp doanh nghiệp quản lý lựa chọn cookies và sự đồng ý xử lý dữ liệu cá nhân, lưu bằng chứng và theo dõi trạng thái consent tập trung.</p><div className="hero-actions"><Button onClick={() => scrollTo("dang-ky-demo")}>Đăng ký demo <ArrowRight size={18} /></Button><Button variant="secondary" onClick={() => scrollTo("tinh-nang")}>Khám phá tính năng</Button></div></div>
+      <div className="hero-showcase"><div className="showcase-tabs"><span className="active">Giải pháp quản lý consent</span><span>Giao diện sản phẩm</span></div><div className="showcase-body"><div className="showcase-copy"><p className="eyebrow">Quản lý tập trung</p><h2>Sự đồng ý và cookies trên một nền tảng</h2><p>Thiết lập điểm thu thập, ghi nhận lựa chọn và tra cứu bằng chứng khi cần đối soát.</p><ul className="hero-points"><li><Check />Lựa chọn cookies rõ ràng</li><li><Check />Bản ghi consent tập trung</li><li><Check />Báo cáo trực quan</li></ul></div><button className="hero-video" onClick={() => openImage(consentReport, "Giao diện báo cáo Consent của FPT CMP")} aria-label="Xem giao diện giới thiệu FPT CMP"><img src={consentReport} alt="Giao diện báo cáo Consent của FPT CMP" width="1325" height="805" fetchPriority="high" /><span className="play-button"><Play fill="currentColor" /> <b>Xem giao diện FPT CMP</b></span></button></div></div>
     </div></section>
+
+    <section className="partner-strip" aria-label="Khu vực logo đối tác"><div className="container"><div className="partner-heading"><p className="eyebrow">Đối tác đồng hành</p><span>Nội dung minh họa — logo sẽ được cập nhật sau khi xác minh.</span></div></div><div className="partner-marquee"><div className="partner-track">{[...partnerPlaceholders,...partnerPlaceholders].map((partner,index)=><div className="partner-logo" key={`${partner}-${index}`} aria-hidden={index >= partnerPlaceholders.length}><span>{String(index % partnerPlaceholders.length + 1).padStart(2,"0")}</span>{partner}</div>)}</div></div></section>
 
     <section className="section" aria-labelledby="problems-title"><div className="container"><div className="section-heading"><p className="eyebrow">Bài toán quản lý</p><h2 id="problems-title">Khó quản lý sự đồng ý khi dữ liệu đến từ nhiều điểm chạm?</h2></div><div className="problems-grid">
       {[[FileSearch,"Khó tra cứu bằng chứng đồng ý","Khi cần đối soát, doanh nghiệp mất thời gian xác định khách hàng đã đồng ý nội dung nào."],[Network,"Thông tin consent nằm rải rác","Lựa chọn của người dùng được ghi nhận qua nhiều biểu mẫu và hệ thống, gây khó khăn khi tổng hợp."],[Settings2,"Khó theo dõi khi lựa chọn thay đổi","Các bộ phận cần cập nhật kịp thời khi người dùng thay đổi hoặc rút lại sự đồng ý."]].map(([Icon,title,text]) => {const I=Icon as typeof FileSearch;return <article className="problem" key={String(title)}><div className="icon-box"><I /></div><h3>{String(title)}</h3><p>{String(text)}</p></article>;})}
     </div></div></section>
-
-    <section className="section process-section"><div className="container"><div className="section-heading"><p className="eyebrow">Cách hoạt động</p><h2>Từ thu thập lựa chọn đến quản lý bằng chứng</h2></div><ol className="process-list">{[["Thiết lập mục đích","Cấu hình nội dung xin đồng ý phù hợp với hoạt động xử lý dữ liệu."],["Thu thập lựa chọn","Ghi nhận lựa chọn qua biểu mẫu hoặc cookie banner."],["Quản lý và cập nhật","Theo dõi bản ghi và trạng thái consent tập trung."],["Tra cứu và báo cáo","Tìm lại thông tin, xem thống kê và xuất báo cáo khi cần."]].map(([title,text],i)=><li key={title}><span>{i+1}</span><h3>{title}</h3><p>{text}</p></li>)}</ol></div></section>
 
     <section className="section features" id="tinh-nang"><div className="container"><div className="section-heading"><p className="eyebrow">Giao diện sản phẩm</p><h2>Khám phá các tính năng của FPT CMP</h2><p>Giao diện trực quan cho từng bước thu thập, quản lý và theo dõi sự đồng ý.</p></div>
       <div className="feature-list">{features.map((feature,index)=><article className={`feature-row ${feature.highlighted ? "feature-highlight" : ""}`} key={feature.title}><div className="feature-copy"><span className="feature-number">0{index+1}</span><h3>{feature.title}</h3><p>{feature.description}</p><ul>{feature.bullets.map((item)=><li key={item}><Check />{item}</li>)}</ul>{feature.cta && <Button onClick={() => scrollTo("dang-ky-demo")}>Đăng ký xem demo <ArrowRight size={18} /></Button>}</div><ProductImage src={feature.image} alt={feature.alt} onOpen={openImage} /></article>)}</div>
@@ -172,8 +190,10 @@ export function FptCmpHome() {
 
     <section className="section" id="trien-khai"><div className="container"><div className="section-heading"><p className="eyebrow">Triển khai</p><h2>Triển khai theo nhu cầu thực tế của doanh nghiệp</h2></div><div className="deployment-grid"><ol>{["Khởi tạo tài khoản và phân quyền.","Cấu hình giao diện và mục đích xử lý.","Tích hợp, kiểm tra hoạt động.","Bàn giao và hướng dẫn vận hành."].map((item,i)=><li key={item}><span>0{i+1}</span>{item}</li>)}</ol><div className="support-panel"><h3>Đồng hành trong quá trình vận hành</h3><ul><li><Building2 />Nền tảng được giới thiệu triển khai trên FPT Cloud.</li><li><ShieldCheck />Phân quyền quản trị cho các bộ phận liên quan.</li><li><Settings2 />Hỗ trợ cấu hình và kết nối theo nhu cầu.</li></ul></div></div></div></section>
 
-    <section className="section faq-section" id="faq"><div className="container faq-layout"><div><p className="eyebrow">Câu hỏi thường gặp</p><h2>Giải đáp trước khi triển khai</h2><p>Thông tin tổng quan giúp doanh nghiệp chuẩn bị trước buổi trao đổi.</p></div><div className="accordion">{faqs.map(([question,answer],i)=>{const open=faqOpen===i;return <div className="faq-item" key={question}><h3><button aria-expanded={open} aria-controls={`faq-panel-${i}`} onClick={()=>setFaqOpen(open?null:i)}>{question}<ChevronDown /></button></h3><div id={`faq-panel-${i}`} hidden={!open}><p>{answer}</p></div></div>;})}</div></div></section>
+    <section className="section case-section" id="case-study"><div className="container"><div className="section-heading"><p className="eyebrow">Case study</p><h2>Các tình huống ứng dụng FPT CMP</h2><p>Khu vực được dựng sẵn để cập nhật câu chuyện khách hàng sau khi nội dung được xác minh.</p></div><div className="case-grid">{caseStudies.map((item)=><article className="case-card" key={item.title}><img src={item.image} alt="Giao diện minh họa FPT CMP" width="1325" height="805" loading="lazy" /><div><span>{item.tag}</span><h3>{item.title}</h3><p>{item.text}</p></div></article>)}</div></div></section>
 
-    <section className="section final-cta" id="dang-ky-demo"><div className="container final-grid"><div><p className="eyebrow">Demo theo nhu cầu</p><h2>Xem FPT CMP phù hợp với doanh nghiệp của bạn như thế nào</h2><p>Trao đổi với đội ngũ FPT để xem giao diện thực tế và xác định nhu cầu triển khai.</p><ul><li><Check />Xem cách thu thập và quản lý consent.</li><li><Check />Tìm hiểu tra cứu và báo cáo.</li><li><Check />Trao đổi phương án tích hợp.</li></ul></div><div className="final-form"><LeadForm variant="footer" /></div></div></section>
+    <section className="section news-section" id="tin-tuc"><div className="container"><div className="section-heading"><p className="eyebrow">Tin tức nổi bật</p><h2>Thông tin về consent và quản lý cookies</h2><p>Nội dung mẫu đang chờ bài viết và đường dẫn chính thức.</p></div><div className="news-grid">{newsPlaceholders.map(([category,title],index)=><article className="news-card" key={title}><div className={`news-visual news-visual-${index+1}`}><Newspaper /><span>Nội dung đang cập nhật</span></div><div className="news-meta"><span>{category}</span><span><Clock3 /> Chờ ngày đăng</span></div><h3>{title}</h3><p>Bài viết sẽ được hiển thị khi có nội dung và đường dẫn đã được duyệt.</p></article>)}</div></div></section>
+
+    <section className="section faq-section" id="faq"><div className="container faq-form-layout"><div><p className="eyebrow">Câu hỏi thường gặp</p><h2>Giải đáp trước khi triển khai</h2><p>Thông tin tổng quan giúp doanh nghiệp chuẩn bị trước buổi trao đổi.</p><div className="accordion">{faqs.map(([question,answer],i)=>{const open=faqOpen===i;return <div className="faq-item" key={question}><h3><button aria-expanded={open} aria-controls={`faq-panel-${i}`} onClick={()=>setFaqOpen(open?null:i)}>{question}<ChevronDown /></button></h3><div id={`faq-panel-${i}`} hidden={!open}><p>{answer}</p></div></div>;})}</div></div><aside className="faq-form" id="dang-ky-demo"><p className="form-kicker">Demo theo nhu cầu</p><h2>Đăng ký xem demo FPT CMP</h2><p>Trao đổi với đội ngũ FPT để xem giao diện thực tế và xác định nhu cầu triển khai.</p><LeadForm variant="footer" /></aside></div></section>
   </main><footer><div className="container footer-grid"><div><div className="brand footer-brand"><img src={logo} alt="FPT" width="70" height="47" /><span><b>FPT CMP</b><small>Consent Management Platform</small></span></div><p>Nền tảng quản lý sự đồng ý và lựa chọn cookies tập trung cho doanh nghiệp.</p></div><div><h2>Điều hướng</h2>{navItems.map(([label,id])=><a key={id} href={`#${id}`}>{label}</a>)}</div><div><h2>Liên hệ</h2><p>Tòa nhà FPT, Số 10 phố Phạm Văn Bạch, P. Cầu Giấy, TP. Hà Nội</p></div></div><div className="container footer-bottom">© 2026 BizNext by FPT Corporation. All rights reserved.</div></footer><ImageModal image={modal} onClose={()=>setModal(null)} /></>;
 }
