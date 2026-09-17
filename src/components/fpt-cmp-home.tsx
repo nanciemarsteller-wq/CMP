@@ -29,7 +29,17 @@ const navItems = [
   ["Câu hỏi thường gặp", "faq"],
 ] as const;
 
-const features = [
+type Feature = {
+  title: string;
+  description: string;
+  bullets: readonly string[];
+  image: string;
+  alt: string;
+  cta?: boolean;
+  highlighted?: boolean;
+};
+
+const features: readonly Feature[] = [
   {
     title: "Cho người dùng chủ động lựa chọn cookies",
     description: "Hiển thị các lựa chọn rõ ràng ngay trên website doanh nghiệp.",
@@ -67,7 +77,7 @@ const features = [
     alt: "Giao diện báo cáo Consent của FPT CMP",
     highlighted: true,
   },
-] as const;
+];
 
 const faqs = [
   ["FPT CMP quản lý cookies hay cả sự đồng ý xử lý dữ liệu cá nhân?", "Nền tảng được giới thiệu với cả hai phạm vi: quản lý lựa chọn cookies và thu thập, quản lý sự đồng ý xử lý dữ liệu cá nhân."],
@@ -121,7 +131,7 @@ function LeadForm({ variant }: { variant: "hero" | "footer" }) {
   return <form className="lead-form" onSubmit={submit} noValidate>
     <div className="form-grid">{field("name", "Họ và tên", true)}{field("phone", "Số điện thoại", true, "tel")}{field("company", "Doanh nghiệp", true)}{field("email", "Email công việc", false, "email")}</div>
     <div className="field"><label htmlFor={`${prefix}-interest`}>Nhu cầu quan tâm</label><select id={`${prefix}-interest`} name="interest" defaultValue=""><option value="">Chọn nhu cầu</option><option>Quản lý cookies trên website</option><option>Thu thập và quản lý sự đồng ý</option><option>Tích hợp với hệ thống hiện tại</option><option>Cần tư vấn lựa chọn giải pháp</option></select></div>
-    <label className="consent-check" htmlFor={`${prefix}-consent`}><input id={`${prefix}-consent`} name="consent" type="checkbox" /><span>Tôi đồng ý để FPT sử dụng thông tin này nhằm liên hệ và sắp xếp buổi giới thiệu sản phẩm.</span></label>{errors.consent && <p className="field-error">{errors.consent}</p>}
+    <label className="consent-check" htmlFor={`${prefix}-consent`}><input id={`${prefix}-consent`} name="consent" type="checkbox" /><span>Tôi đồng ý để FPT sử dụng thông tin này nhằm liên hệ và sắp xếp buổi giới thiệu sản phẩm.</span></label>{errors["consent"] && <p className="field-error">{errors["consent"]}</p>}
     <Button type="submit" className="form-submit">Đăng ký demo <ArrowRight size={18} /></Button>
     {notice ? <p className="form-notice" role="status">{notice}</p> : <p className="form-note">Đội ngũ FPT sẽ liên hệ để trao đổi nhu cầu và sắp xếp buổi giới thiệu.</p>}
   </form>;
