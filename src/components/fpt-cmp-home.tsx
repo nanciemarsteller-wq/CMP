@@ -79,6 +79,17 @@ const solutionTabs: readonly SolutionTab[] = [
   },
 ];
 
+type ProblemItem = { icon: typeof FileSearch; title: string; text: string };
+
+const problemItems: readonly ProblemItem[] = [
+  { icon: Network, title: "Dữ liệu phân tán, khó quản trị tập trung", text: "Dữ liệu khách hàng được thu thập và lưu trữ trên Website, App, CRM…, gây khó khăn trong quản lý thống nhất và kiểm soát toàn diện." },
+  { icon: FileSearch, title: "Hạn chế khả năng truy xuất, đối soát", text: "Thiếu cơ chế ghi nhận và quản lý xuyên suốt lịch sử thu thập, sử dụng và xử lý dữ liệu, làm tăng thời gian kiểm tra, đối soát." },
+  { icon: Settings2, title: "Thiếu minh bạch trong thu thập dữ liệu", text: "Thông tin về mục đích, phạm vi và phương thức xử lý dữ liệu chưa được chuẩn hóa trên các kênh, ảnh hưởng đến tính minh bạch và trải nghiệm khách hàng." },
+  { icon: FileSearch, title: "Khó đáp ứng quyền của chủ thể dữ liệu", text: "Chưa có quy trình tập trung để tiếp nhận, xác minh và xử lý yêu cầu rút lại sự đồng ý, hạn chế hoặc phản đối xử lý dữ liệu." },
+  { icon: ShieldCheck, title: "Gia tăng rủi ro tuân thủ", text: "Quy trình và chính sách quản trị dữ liệu chưa được chuẩn hóa đồng bộ, tiềm ẩn rủi ro khi đáp ứng yêu cầu bảo vệ dữ liệu cá nhân." },
+  { icon: Building2, title: "Thiếu cơ chế phối hợp liên phòng ban", text: "Marketing, IT, Pháp chế và các đơn vị liên quan chưa có cơ chế quản trị thống nhất, gây khó khăn trong phối hợp, kiểm soát và khai thác dữ liệu." },
+];
+
 type Feature = {
   title: string;
   description: string;
@@ -204,6 +215,7 @@ export function FptCmpHome() {
   const [modal, setModal] = useState<{src:string;alt:string}|null>(null);
   const [faqOpen, setFaqOpen] = useState<number | null>(0);
   const [solutionTab, setSolutionTab] = useState(0);
+  const [problemTab, setProblemTab] = useState(0);
   const openImage=(src:string,alt:string)=>setModal({src,alt});
   return <><Header /><main>
     <section className="hero" id="tong-quan"><div className="container">
@@ -213,9 +225,12 @@ export function FptCmpHome() {
 
     <section className="partner-strip" aria-label="Khu vực logo đối tác"><div className="container"><div className="partner-heading"><p className="eyebrow">Đối tác đồng hành</p><span>Nội dung minh họa — logo sẽ được cập nhật sau khi xác minh.</span></div></div><div className="partner-marquee"><div className="partner-track">{[...partnerPlaceholders,...partnerPlaceholders].map((partner,index)=><div className="partner-logo" key={`${partner}-${index}`} aria-hidden={index >= partnerPlaceholders.length}><span>{String(index % partnerPlaceholders.length + 1).padStart(2,"0")}</span>{partner}</div>)}</div></div></section>
 
-    <section className="section" aria-labelledby="problems-title"><div className="container"><div className="section-heading"><p className="eyebrow">Thách thức doanh nghiệp gặp phải</p><h2 id="problems-title">Những thách thức cốt lõi trong quản trị dữ liệu cá nhân</h2></div><div className="problems-grid">
-      {[[Network,"Dữ liệu phân tán, khó quản trị tập trung","Dữ liệu khách hàng được thu thập và lưu trữ trên Website, App, CRM…, gây khó khăn trong quản lý thống nhất và kiểm soát toàn diện."],[FileSearch,"Hạn chế khả năng truy xuất, đối soát","Thiếu cơ chế ghi nhận và quản lý xuyên suốt lịch sử thu thập, sử dụng và xử lý dữ liệu, làm tăng thời gian kiểm tra, đối soát."],[Settings2,"Thiếu minh bạch trong thu thập dữ liệu","Thông tin về mục đích, phạm vi và phương thức xử lý dữ liệu chưa được chuẩn hóa trên các kênh, ảnh hưởng đến tính minh bạch và trải nghiệm khách hàng."],[FileSearch,"Khó đáp ứng quyền của chủ thể dữ liệu","Chưa có quy trình tập trung để tiếp nhận, xác minh và xử lý yêu cầu rút lại sự đồng ý, hạn chế hoặc phản đối xử lý dữ liệu."],[ShieldCheck,"Gia tăng rủi ro tuân thủ","Quy trình và chính sách quản trị dữ liệu chưa được chuẩn hóa đồng bộ, tiềm ẩn rủi ro khi đáp ứng yêu cầu bảo vệ dữ liệu cá nhân."],[Building2,"Thiếu cơ chế phối hợp liên phòng ban","Marketing, IT, Pháp chế và các đơn vị liên quan chưa có cơ chế quản trị thống nhất, gây khó khăn trong phối hợp, kiểm soát và khai thác dữ liệu."]].map(([Icon,title,text]) => {const I=Icon as typeof FileSearch;return <article className="problem" key={String(title)}><div className="icon-box"><I /></div><h3>{String(title)}</h3><p>{String(text)}</p></article>;})}
-    </div></div></section>
+    <section className="section" aria-labelledby="problems-title"><div className="container"><div className="section-heading"><p className="eyebrow">Thách thức doanh nghiệp gặp phải</p><h2 id="problems-title">Những thách thức cốt lõi trong quản trị dữ liệu cá nhân</h2></div>
+      <div className="problems-tabs" role="tablist" aria-label="Các thách thức trong quản trị dữ liệu cá nhân">
+        {problemItems.map((item, i) => { const Icon = item.icon; return <button key={item.title} type="button" role="tab" id={`problem-tab-${i}`} aria-selected={problemTab === i} aria-controls="problems-panel" tabIndex={problemTab === i ? 0 : -1} className={`solution-tab ${problemTab === i ? "active" : ""}`} onClick={() => setProblemTab(i)} onKeyDown={(e) => { if (e.key === "ArrowRight" || e.key === "ArrowLeft") { e.preventDefault(); const next = e.key === "ArrowRight" ? (i + 1) % problemItems.length : (i - 1 + problemItems.length) % problemItems.length; setProblemTab(next); document.getElementById(`problem-tab-${next}`)?.focus(); } }}><Icon size={18} />{item.title}</button>; })}
+      </div>
+      {(() => { const item = problemItems[problemTab]!; const Icon = item.icon; return <div className="problems-panel" role="tabpanel" id="problems-panel" aria-labelledby={`problem-tab-${problemTab}`}><div className="icon-box"><Icon /></div><h3>{item.title}</h3><p>{item.text}</p></div>; })()}
+    </div></section>
 
     <section className="section solution" id="giai-phap" aria-labelledby="solution-title"><div className="container">
       <div className="section-heading"><p className="eyebrow">Giải pháp</p><h2 id="solution-title">Giải pháp quản trị sự đồng ý &amp; Quyền riêng tư dữ liệu</h2><p>FPT Consent Management Platform (FPT CMP) cung cấp nền tảng quản lý tập trung toàn bộ vòng đời sự đồng ý của chủ thể dữ liệu, từ thu thập, lưu trữ, cập nhật đến truy xuất và quản lý yêu cầu. Giải pháp giúp doanh nghiệp chuẩn hóa quy trình quản trị Consent, tăng khả năng kiểm soát dữ liệu và hỗ trợ đáp ứng các yêu cầu về bảo vệ dữ liệu cá nhân.</p></div>
