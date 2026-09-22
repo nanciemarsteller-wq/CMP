@@ -47,6 +47,38 @@ const newsPlaceholders = [
   ["Vận hành dữ liệu", "Kết nối các điểm thu thập consent với hệ thống doanh nghiệp"],
 ] as const;
 
+type SolutionTab = { label: string; heading: string; text: string; image?: string; alt?: string; chips?: readonly string[] };
+
+const solutionTabs: readonly SolutionTab[] = [
+  {
+    label: "Quản trị Sự đồng ý",
+    heading: "Tập trung hóa việc thu thập và quản lý Consent",
+    text: "Chuẩn hóa quy trình thu thập, ghi nhận và quản lý sự đồng ý của khách hàng trên các kênh và điểm chạm, đảm bảo Consent được quản lý thống nhất và xuyên suốt vòng đời dữ liệu.",
+    image: dataConsent,
+    alt: "Giao diện Data Consent của FPT CMP",
+  },
+  {
+    label: "Minh bạch & Truy xuất",
+    heading: "Ghi nhận đầy đủ lịch sử và bằng chứng Consent",
+    text: "Lưu trữ thông tin, trạng thái và lịch sử thay đổi của Consent, hỗ trợ doanh nghiệp truy xuất, đối soát và cung cấp bằng chứng khi cần kiểm tra hoặc thực hiện các yêu cầu liên quan đến dữ liệu.",
+    image: consentList,
+    alt: "Giao diện danh sách Consent của FPT CMP",
+  },
+  {
+    label: "Quản trị & Tuân thủ",
+    heading: "Hỗ trợ chuẩn hóa quy trình quản trị dữ liệu cá nhân",
+    text: "Thiết lập cơ chế quản trị Consent theo chính sách của doanh nghiệp, hỗ trợ kiểm soát việc thu thập và sử dụng dữ liệu phù hợp với các yêu cầu về bảo vệ dữ liệu cá nhân.",
+    image: consentReport,
+    alt: "Giao diện báo cáo Consent của FPT CMP",
+  },
+  {
+    label: "Kết nối & Vận hành",
+    heading: "Đồng bộ Consent trên toàn bộ hệ sinh thái",
+    text: "Kết nối với các hệ thống và nền tảng hiện hữu như CRM, CDP, Website, App, Marketing… giúp đồng bộ trạng thái Consent, tăng tính nhất quán trong quản lý và nâng cao hiệu quả vận hành.",
+    chips: ["CRM", "CDP", "Website", "App", "Marketing"],
+  },
+];
+
 type Feature = {
   title: string;
   description: string;
@@ -171,6 +203,7 @@ function ImageModal({ image, onClose }: { image: {src:string;alt:string} | null;
 export function FptCmpHome() {
   const [modal, setModal] = useState<{src:string;alt:string}|null>(null);
   const [faqOpen, setFaqOpen] = useState<number | null>(0);
+  const [solutionTab, setSolutionTab] = useState(0);
   const openImage=(src:string,alt:string)=>setModal({src,alt});
   return <><Header /><main>
     <section className="hero" id="tong-quan"><div className="container">
@@ -183,6 +216,17 @@ export function FptCmpHome() {
     <section className="section" aria-labelledby="problems-title"><div className="container"><div className="section-heading"><p className="eyebrow">Thách thức doanh nghiệp gặp phải</p><h2 id="problems-title">Những thách thức cốt lõi trong quản trị dữ liệu cá nhân</h2></div><div className="problems-grid">
       {[[Network,"Dữ liệu phân tán, khó quản trị tập trung","Dữ liệu khách hàng được thu thập và lưu trữ trên Website, App, CRM…, gây khó khăn trong quản lý thống nhất và kiểm soát toàn diện."],[FileSearch,"Hạn chế khả năng truy xuất, đối soát","Thiếu cơ chế ghi nhận và quản lý xuyên suốt lịch sử thu thập, sử dụng và xử lý dữ liệu, làm tăng thời gian kiểm tra, đối soát."],[Settings2,"Thiếu minh bạch trong thu thập dữ liệu","Thông tin về mục đích, phạm vi và phương thức xử lý dữ liệu chưa được chuẩn hóa trên các kênh, ảnh hưởng đến tính minh bạch và trải nghiệm khách hàng."],[FileSearch,"Khó đáp ứng quyền của chủ thể dữ liệu","Chưa có quy trình tập trung để tiếp nhận, xác minh và xử lý yêu cầu rút lại sự đồng ý, hạn chế hoặc phản đối xử lý dữ liệu."],[ShieldCheck,"Gia tăng rủi ro tuân thủ","Quy trình và chính sách quản trị dữ liệu chưa được chuẩn hóa đồng bộ, tiềm ẩn rủi ro khi đáp ứng yêu cầu bảo vệ dữ liệu cá nhân."],[Building2,"Thiếu cơ chế phối hợp liên phòng ban","Marketing, IT, Pháp chế và các đơn vị liên quan chưa có cơ chế quản trị thống nhất, gây khó khăn trong phối hợp, kiểm soát và khai thác dữ liệu."]].map(([Icon,title,text]) => {const I=Icon as typeof FileSearch;return <article className="problem" key={String(title)}><div className="icon-box"><I /></div><h3>{String(title)}</h3><p>{String(text)}</p></article>;})}
     </div></div></section>
+
+    <section className="section solution" id="giai-phap" aria-labelledby="solution-title"><div className="container">
+      <div className="section-heading"><p className="eyebrow">Giải pháp</p><h2 id="solution-title">Giải pháp quản trị sự đồng ý &amp; Quyền riêng tư dữ liệu</h2><p>FPT Consent Management Platform (FPT CMP) cung cấp nền tảng quản lý tập trung toàn bộ vòng đời sự đồng ý của chủ thể dữ liệu, từ thu thập, lưu trữ, cập nhật đến truy xuất và quản lý yêu cầu. Giải pháp giúp doanh nghiệp chuẩn hóa quy trình quản trị Consent, tăng khả năng kiểm soát dữ liệu và hỗ trợ đáp ứng các yêu cầu về bảo vệ dữ liệu cá nhân.</p></div>
+      <div className="solution-tabs" role="tablist" aria-label="Các trụ cột giải pháp của FPT CMP">
+        {solutionTabs.map((tab, i) => <button key={tab.label} type="button" role="tab" id={`solution-tab-${i}`} aria-selected={solutionTab === i} aria-controls="solution-panel" tabIndex={solutionTab === i ? 0 : -1} className={`solution-tab ${solutionTab === i ? "active" : ""}`} onClick={() => setSolutionTab(i)} onKeyDown={(e) => { if (e.key === "ArrowRight" || e.key === "ArrowLeft") { e.preventDefault(); const next = e.key === "ArrowRight" ? (i + 1) % solutionTabs.length : (i - 1 + solutionTabs.length) % solutionTabs.length; setSolutionTab(next); document.getElementById(`solution-tab-${next}`)?.focus(); } }}><span>0{i + 1}</span>{tab.label}</button>)}
+      </div>
+      {(() => { const tab = solutionTabs[solutionTab]!; return <div className="solution-panel" role="tabpanel" id="solution-panel" aria-labelledby={`solution-tab-${solutionTab}`}>
+        <div className="solution-copy"><span className="feature-number">0{solutionTab + 1}</span><h3>{tab.heading}</h3><p>{tab.text}</p></div>
+        {tab.image ? <ProductImage src={tab.image} alt={tab.alt ?? ""} onOpen={openImage} /> : <div className="solution-network" aria-hidden="true"><div className="solution-hub">FPT CMP</div><ul className="solution-chips">{tab.chips?.map((chip) => <li key={chip}>{chip}</li>)}</ul></div>}
+      </div>; })()}
+    </div></section>
 
     <section className="section features" id="tinh-nang"><div className="container"><div className="section-heading"><p className="eyebrow">Tính năng cốt lõi</p><h2>Giải pháp quản trị sự đồng ý &amp; Quyền riêng tư dữ liệu</h2><p>FPT CMP giúp doanh nghiệp chuẩn hóa quy trình quản trị Consent, tăng khả năng kiểm soát dữ liệu và hỗ trợ đáp ứng các yêu cầu về bảo vệ dữ liệu cá nhân.</p></div>
       <div className="feature-list">{features.map((feature,index)=><article className={`feature-row ${feature.highlighted ? "feature-highlight" : ""}`} key={feature.title}><div className="feature-copy"><span className="feature-number">0{index+1}</span><h3>{feature.title}</h3><p>{feature.description}</p><ul>{feature.bullets.map((item)=><li key={item}><Check />{item}</li>)}</ul>{feature.cta && <Button onClick={() => scrollTo("dang-ky-demo")}>Đăng ký xem demo <ArrowRight size={18} /></Button>}</div><ProductImage src={feature.image} alt={feature.alt} onOpen={openImage} /></article>)}</div>
