@@ -203,6 +203,7 @@ function ImageModal({ image, onClose }: { image: {src:string;alt:string} | null;
 export function FptCmpHome() {
   const [modal, setModal] = useState<{src:string;alt:string}|null>(null);
   const [faqOpen, setFaqOpen] = useState<number | null>(0);
+  const [solutionTab, setSolutionTab] = useState(0);
   const openImage=(src:string,alt:string)=>setModal({src,alt});
   return <><Header /><main>
     <section className="hero" id="tong-quan"><div className="container">
@@ -221,7 +222,7 @@ export function FptCmpHome() {
       <div className="solution-tabs" role="tablist" aria-label="Các trụ cột giải pháp của FPT CMP">
         {solutionTabs.map((tab, i) => <button key={tab.label} type="button" role="tab" id={`solution-tab-${i}`} aria-selected={solutionTab === i} aria-controls="solution-panel" tabIndex={solutionTab === i ? 0 : -1} className={`solution-tab ${solutionTab === i ? "active" : ""}`} onClick={() => setSolutionTab(i)} onKeyDown={(e) => { if (e.key === "ArrowRight" || e.key === "ArrowLeft") { e.preventDefault(); const next = e.key === "ArrowRight" ? (solutionTab + 1) % solutionTabs.length : (solutionTab - 1 + solutionTabs.length) % solutionTabs.length; setSolutionTab(next); document.getElementById(`solution-tab-${next}`)?.focus(); } }}><span>0{i + 1}</span>{tab.label}</button>)}
       </div>
-      {(() => { const tab = solutionTabs[solutionTab]; return <div className="solution-panel" role="tabpanel" id="solution-panel" aria-labelledby={`solution-tab-${solutionTab}`}>
+      {(() => { const tab = solutionTabs[solutionTab]!; return <div className="solution-panel" role="tabpanel" id="solution-panel" aria-labelledby={`solution-tab-${solutionTab}`}>
         <div className="solution-copy"><span className="feature-number">0{solutionTab + 1}</span><h3>{tab.heading}</h3><p>{tab.text}</p></div>
         {tab.image ? <ProductImage src={tab.image} alt={tab.alt ?? ""} onOpen={openImage} /> : <div className="solution-network" aria-hidden="true"><div className="solution-hub">FPT CMP</div><ul className="solution-chips">{tab.chips?.map((chip) => <li key={chip}>{chip}</li>)}</ul></div>}
       </div>; })()}
