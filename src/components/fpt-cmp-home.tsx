@@ -215,7 +215,7 @@ export function FptCmpHome() {
   const [modal, setModal] = useState<{src:string;alt:string}|null>(null);
   const [faqOpen, setFaqOpen] = useState<number | null>(0);
   const [solutionTab, setSolutionTab] = useState(0);
-  const [problemTab, setProblemTab] = useState(0);
+  const [problemOpen, setProblemOpen] = useState<number | null>(0);
   const openImage=(src:string,alt:string)=>setModal({src,alt});
   return <><Header /><main>
     <section className="hero" id="tong-quan"><div className="container">
@@ -226,10 +226,10 @@ export function FptCmpHome() {
     <section className="partner-strip" aria-label="Khu vực logo đối tác"><div className="container"><div className="partner-heading"><p className="eyebrow">Đối tác đồng hành</p><span>Nội dung minh họa — logo sẽ được cập nhật sau khi xác minh.</span></div></div><div className="partner-marquee"><div className="partner-track">{[...partnerPlaceholders,...partnerPlaceholders].map((partner,index)=><div className="partner-logo" key={`${partner}-${index}`} aria-hidden={index >= partnerPlaceholders.length}><span>{String(index % partnerPlaceholders.length + 1).padStart(2,"0")}</span>{partner}</div>)}</div></div></section>
 
     <section className="section" aria-labelledby="problems-title"><div className="container"><div className="section-heading"><p className="eyebrow">Thách thức doanh nghiệp gặp phải</p><h2 id="problems-title">Những thách thức cốt lõi trong quản trị dữ liệu cá nhân</h2></div>
-      <div className="problems-tabs" role="tablist" aria-label="Các thách thức trong quản trị dữ liệu cá nhân">
-        {problemItems.map((item, i) => { const Icon = item.icon; return <button key={item.title} type="button" role="tab" id={`problem-tab-${i}`} aria-selected={problemTab === i} aria-controls="problems-panel" tabIndex={problemTab === i ? 0 : -1} className={`solution-tab ${problemTab === i ? "active" : ""}`} onClick={() => setProblemTab(i)} onKeyDown={(e) => { if (e.key === "ArrowRight" || e.key === "ArrowLeft") { e.preventDefault(); const next = e.key === "ArrowRight" ? (i + 1) % problemItems.length : (i - 1 + problemItems.length) % problemItems.length; setProblemTab(next); document.getElementById(`problem-tab-${next}`)?.focus(); } }}><Icon size={18} />{item.title}</button>; })}
+      <div className="problems-accordion">
+        {problemItems.map((item, i) => { const Icon = item.icon; const open = problemOpen === i; return <button key={item.title} type="button" id={`problem-tab-${i}`} aria-expanded={open} aria-controls="problems-panel" className={`solution-tab problem-card ${open ? "active" : ""}`} style={{ order: i + 1 }} onClick={() => setProblemOpen(open ? null : i)}><Icon size={18} />{item.title}</button>; })}
+        {(() => { const k = problemOpen ?? 0; const item = problemItems[k]!; const Icon = item.icon; return <div id="problems-panel" role="region" aria-labelledby={`problem-tab-${k}`} className={`problem-panel ${problemOpen !== null ? "open" : ""}`} style={{ "--pa-3": Math.floor(k / 3) * 3 + 3, "--pa-2": Math.floor(k / 2) * 2 + 2, "--pa-1": k + 1 } as React.CSSProperties}><div className="problem-panel-clip"><div className="problem-panel-inner"><div className="icon-box"><Icon /></div><h3>{item.title}</h3><p>{item.text}</p></div></div></div>; })()}
       </div>
-      {(() => { const item = problemItems[problemTab]!; const Icon = item.icon; return <div className="problems-panel" role="tabpanel" id="problems-panel" aria-labelledby={`problem-tab-${problemTab}`}><div className="icon-box"><Icon /></div><h3>{item.title}</h3><p>{item.text}</p></div>; })()}
     </div></section>
 
     <section className="section solution" id="giai-phap" aria-labelledby="solution-title"><div className="container">
