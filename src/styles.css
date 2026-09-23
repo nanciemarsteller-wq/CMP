@@ -233,8 +233,8 @@
   .form-submit { width: 100%; margin-top: 15px; }
   .form-note, .form-notice { margin: 11px 0 0; color: var(--muted-foreground); font-size: 12px; text-align: center; }
   .form-notice { border-radius: 8px; background: var(--secondary); color: var(--secondary-foreground); padding: 10px; font-weight: 700; }
-  .section { padding: 92px 0; }
-  .section-heading { max-width: 760px; margin: 0 auto 48px; text-align: center; }
+  .section { padding: 56px 0; }
+  .section-heading { max-width: 760px; margin: 0 auto 38px; text-align: center; }
   .section-heading h2 { margin-bottom: 14px; }
   .section-heading > p:last-child { color: var(--muted-foreground); font-size: 17px; }
   .problems-accordion { display: grid; grid-template-columns: repeat(3,1fr); gap: 10px; }
@@ -353,7 +353,7 @@
 @media (max-width: 720px) {
   .site-header { height: 68px; }.brand img { width: 55px; height: 38px; }.brand small { display: none; }
   .hero { padding: 50px 0 58px; }.hero-copy { margin-bottom: 34px; }.hero-description { font-size: 16px; }.hero-points { display: grid; }.hero-actions { flex-direction: column; align-items: stretch; }.showcase-tabs { overflow-x: auto; padding-inline: 10px; }.showcase-tabs span { white-space: nowrap; }.showcase-body { padding: 24px 18px; gap: 26px; }
-  h1 { font-size: 34px; }.section { padding: 58px 0; }.section-heading { text-align: left; margin-bottom: 34px; }
+  h1 { font-size: 34px; }.section { padding: 42px 0; }.section-heading { text-align: left; margin-bottom: 30px; }
   .hero-grid { display: flex; flex-direction: column; }.hero-grid .product-shot { order: 1; }.hero-grid .hero-form { order: 2; width: 100%; }
   .form-grid, .final-form .form-grid { grid-template-columns: 1fr; gap: 0; }.hero-form, .final-form { padding: 22px 18px; }
   .problems-accordion { grid-template-columns: 1fr; }.problem-panel { order: var(--pa-1); }.problem-panel-inner { padding: 26px 20px; }
