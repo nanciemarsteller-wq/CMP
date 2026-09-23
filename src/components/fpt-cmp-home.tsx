@@ -227,7 +227,7 @@ export function FptCmpHome() {
 
     <section className="section" aria-labelledby="problems-title"><div className="container"><div className="section-heading"><p className="eyebrow">Thách thức doanh nghiệp gặp phải</p><h2 id="problems-title">Những thách thức cốt lõi trong quản trị dữ liệu cá nhân</h2></div>
       <div className="problems-accordion">
-        {problemItems.map((item, i) => { const Icon = item.icon; const open = problemOpen === i; return <button key={item.title} type="button" id={`problem-tab-${i}`} aria-expanded={open} aria-controls="problems-panel" className={`solution-tab problem-card ${open ? "active" : ""}`} style={{ order: i }} onClick={() => setProblemOpen(open ? null : i)}><Icon size={18} />{item.title}</button>; })}
+        {problemItems.map((item, i) => { const Icon = item.icon; const open = problemOpen === i; return <button key={item.title} type="button" id={`problem-tab-${i}`} aria-expanded={open} aria-controls="problems-panel" className={`solution-tab problem-card ${open ? "active" : ""}`} style={{ order: i + 1 }} onClick={() => setProblemOpen(open ? null : i)}><Icon size={18} />{item.title}</button>; })}
         {(() => { const k = problemOpen ?? 0; const item = problemItems[k]!; const Icon = item.icon; return <div id="problems-panel" role="region" aria-labelledby={`problem-tab-${k}`} className={`problem-panel ${problemOpen !== null ? "open" : ""}`} style={{ "--pa-3": Math.floor(k / 3) * 3 + 3, "--pa-2": Math.floor(k / 2) * 2 + 2, "--pa-1": k + 1 } as React.CSSProperties}><div className="problem-panel-clip"><div className="problem-panel-inner"><div className="icon-box"><Icon /></div><h3>{item.title}</h3><p>{item.text}</p></div></div></div>; })()}
       </div>
     </div></section>
