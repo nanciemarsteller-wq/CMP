@@ -102,38 +102,38 @@ type Feature = {
 
 const features: readonly Feature[] = [
   {
-    title: "Cho người dùng chủ động lựa chọn cookies",
-    description: "Hiển thị các lựa chọn rõ ràng ngay trên website doanh nghiệp.",
-    bullets: ["Đồng ý, từ chối hoặc tùy chỉnh cookies.", "Trình bày các nhóm cookies để người dùng lựa chọn.", "Tùy chỉnh giao diện theo nhận diện thương hiệu."],
+    title: "Linh hoạt thiết kế trải nghiệm xin sự đồng ý",
+    description: "Tùy chỉnh Cookie banner theo nhận diện thương hiệu và yêu cầu quản trị của doanh nghiệp, đồng thời kiểm soát cách thức hiển thị thông tin và lựa chọn của người dùng.",
+    bullets: ["Tùy chỉnh giao diện theo nhận diện thương hiệu.", "Thiết lập nội dung và cách hiển thị banner.", "Phân loại cookie theo mục đích sử dụng.", "Hỗ trợ quản lý lựa chọn đồng ý hoặc từ chối của người dùng."],
     image: cookieBanner,
     alt: "Giao diện Cookie Banner của FPT CMP",
   },
   {
-    title: "Nắm thông tin cookies đang xuất hiện trên website",
-    description: "Xem kết quả quét và phân loại cookies trên một giao diện báo cáo.",
-    bullets: ["Quét domain website.", "Thống kê và phân loại cookies.", "Theo dõi thông tin trong báo cáo quét."],
+    title: "Chủ động nhận diện rủi ro tuân thủ",
+    description: "Tự động quét và phân tích các điểm thu thập dữ liệu trên hệ thống, hỗ trợ doanh nghiệp nhận diện các vấn đề có thể ảnh hưởng đến yêu cầu tuân thủ về dữ liệu cá nhân và sự đồng ý.",
+    bullets: ["Quét các điểm thu thập dữ liệu trên website.", "Phát hiện các vấn đề liên quan đến cơ chế xin và quản lý sự đồng ý.", "Tổng hợp kết quả theo nhóm rủi ro.", "Hỗ trợ doanh nghiệp chủ động rà soát và xử lý."],
     image: scanDomain,
     alt: "Giao diện báo cáo Scan Domain của FPT CMP",
   },
   {
-    title: "Thu thập sự đồng ý theo từng mục đích",
-    description: "Trình bày nội dung xin đồng ý để người dùng hiểu và lựa chọn.",
-    bullets: ["Thiết lập biểu mẫu xin đồng ý xử lý dữ liệu cá nhân.", "Hiển thị các mục đích xử lý.", "Ghi nhận lựa chọn của người dùng."],
+    title: "Quản lý tập trung sự đồng ý trên mọi kênh",
+    description: "Thu thập và quản lý thông tin đồng ý của khách hàng từ nhiều điểm tiếp xúc như Website, Ứng dụng, CRM và các nền tảng số khác trên một hệ thống thống nhất. Dễ dàng theo dõi trạng thái đồng ý theo từng khách hàng, mục đích và phạm vi xử lý dữ liệu.",
+    bullets: ["Tập trung dữ liệu sự đồng ý trên một nền tảng.", "Quản lý theo từng mục đích và phạm vi xử lý.", "Đồng bộ trạng thái giữa các kênh và hệ thống liên quan.", "Hỗ trợ quản lý xuyên suốt vòng đời sự đồng ý."],
     image: dataConsent,
-    alt: "Giao diện Data Consent của FPT CMP",
+    alt: "Giao diện thu thập sự đồng ý của FPT CMP",
     cta: true,
   },
   {
-    title: "Quản lý và tra cứu consent tập trung",
-    description: "Tìm lại bản ghi và theo dõi trạng thái sự đồng ý khi cần đối soát.",
-    bullets: ["Theo dõi danh sách consent.", "Tra cứu các bản ghi.", "Xem trạng thái đồng ý trên hệ thống."],
+    title: "Lưu lịch sử đồng ý và khả năng truy vết",
+    description: "Ghi nhận đầy đủ lịch sử đồng ý, từ chối hoặc thay đổi lựa chọn của chủ thể dữ liệu, giúp doanh nghiệp dễ dàng kiểm tra quá trình xử lý và cung cấp bằng chứng khi cần.",
+    bullets: ["Lưu lịch sử đồng ý, từ chối và thay đổi trạng thái.", "Ghi nhận thời điểm, mục đích và phạm vi đồng ý.", "Theo dõi lịch sử thay đổi theo từng chủ thể dữ liệu.", "Hỗ trợ truy xuất thông tin khi kiểm tra hoặc đối soát."],
     image: consentList,
     alt: "Giao diện danh sách Consent của FPT CMP",
   },
   {
-    title: "Theo dõi sự đồng ý qua báo cáo trực quan",
-    description: "Tổng hợp thông tin để hỗ trợ quản lý và kiểm tra nội bộ.",
-    bullets: ["Xem thống kê và tỷ lệ đồng ý.", "Tra cứu thông tin báo cáo.", "Xuất báo cáo phục vụ đối soát."],
+    title: "Chuẩn hóa báo cáo, hỗ trợ đáp ứng yêu cầu quản lý",
+    description: "Hỗ trợ doanh nghiệp tổng hợp và xuất thông tin theo cấu trúc biểu mẫu A05, giảm thao tác tổng hợp thủ công và thuận tiện hơn trong quá trình chuẩn bị hồ sơ, báo cáo liên quan.",
+    bullets: ["Hỗ trợ tổng hợp dữ liệu theo biểu mẫu A05.", "Chuẩn hóa thông tin phục vụ báo cáo.", "Giảm thời gian tổng hợp dữ liệu thủ công.", "Hỗ trợ tra cứu và đối chiếu dữ liệu khi cần."],
     image: consentReport,
     alt: "Giao diện báo cáo Consent của FPT CMP",
     highlighted: true,
@@ -243,7 +243,7 @@ export function FptCmpHome() {
       </div>; })()}
     </div></section>
 
-    <section className="section features" id="tinh-nang"><div className="container"><div className="section-heading"><p className="eyebrow">Tính năng cốt lõi</p><h2>Giải pháp quản trị sự đồng ý &amp; Quyền riêng tư dữ liệu</h2><p>FPT CMP giúp doanh nghiệp chuẩn hóa quy trình quản trị Consent, tăng khả năng kiểm soát dữ liệu và hỗ trợ đáp ứng các yêu cầu về bảo vệ dữ liệu cá nhân.</p></div>
+    <section className="section features" id="tinh-nang"><div className="container"><div className="section-heading"><p className="eyebrow">Tính năng cốt lõi</p><h2>Kiểm soát toàn diện quản trị sự đồng ý</h2><p>Tập trung quản lý sự đồng ý, chủ động phát hiện rủi ro và đảm bảo khả năng truy vết trên toàn bộ hệ sinh thái số.</p></div>
       <div className="feature-list">{features.map((feature,index)=><article className={`feature-row ${feature.highlighted ? "feature-highlight" : ""}`} key={feature.title}><div className="feature-copy"><span className="feature-number">0{index+1}</span><h3>{feature.title}</h3><p>{feature.description}</p><ul>{feature.bullets.map((item)=><li key={item}><Check />{item}</li>)}</ul>{feature.cta && <Button onClick={() => scrollTo("dang-ky-demo")}>Đăng ký xem demo <ArrowRight size={18} /></Button>}</div><ProductImage src={feature.image} alt={feature.alt} onOpen={openImage} /></article>)}</div>
     </div></section>
 
