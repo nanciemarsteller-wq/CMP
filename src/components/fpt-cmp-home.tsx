@@ -102,11 +102,12 @@ type Feature = {
 
 const features: readonly Feature[] = [
   {
-    title: "Linh hoạt thiết kế trải nghiệm xin sự đồng ý",
-    description: "Tùy chỉnh Cookie banner theo nhận diện thương hiệu và yêu cầu quản trị của doanh nghiệp, đồng thời kiểm soát cách thức hiển thị thông tin và lựa chọn của người dùng.",
-    bullets: ["Tùy chỉnh giao diện theo nhận diện thương hiệu.", "Thiết lập nội dung và cách hiển thị banner.", "Phân loại cookie theo mục đích sử dụng.", "Hỗ trợ quản lý lựa chọn đồng ý hoặc từ chối của người dùng."],
-    image: cookieBanner,
-    alt: "Giao diện Cookie Banner của FPT CMP",
+    title: "Quản lý tập trung sự đồng ý trên mọi kênh",
+    description: "Thu thập và quản lý thông tin đồng ý của khách hàng từ nhiều điểm tiếp xúc như Website, Ứng dụng, CRM và các nền tảng số khác trên một hệ thống thống nhất. Dễ dàng theo dõi trạng thái đồng ý theo từng khách hàng, mục đích và phạm vi xử lý dữ liệu.",
+    bullets: ["Tập trung dữ liệu sự đồng ý trên một nền tảng.", "Quản lý theo từng mục đích và phạm vi xử lý.", "Đồng bộ trạng thái giữa các kênh và hệ thống liên quan.", "Hỗ trợ quản lý xuyên suốt vòng đời sự đồng ý."],
+    image: dataConsent,
+    alt: "Giao diện thu thập sự đồng ý của FPT CMP",
+    cta: true,
   },
   {
     title: "Chủ động nhận diện rủi ro tuân thủ",
@@ -116,12 +117,11 @@ const features: readonly Feature[] = [
     alt: "Giao diện báo cáo Scan Domain của FPT CMP",
   },
   {
-    title: "Quản lý tập trung sự đồng ý trên mọi kênh",
-    description: "Thu thập và quản lý thông tin đồng ý của khách hàng từ nhiều điểm tiếp xúc như Website, Ứng dụng, CRM và các nền tảng số khác trên một hệ thống thống nhất. Dễ dàng theo dõi trạng thái đồng ý theo từng khách hàng, mục đích và phạm vi xử lý dữ liệu.",
-    bullets: ["Tập trung dữ liệu sự đồng ý trên một nền tảng.", "Quản lý theo từng mục đích và phạm vi xử lý.", "Đồng bộ trạng thái giữa các kênh và hệ thống liên quan.", "Hỗ trợ quản lý xuyên suốt vòng đời sự đồng ý."],
-    image: dataConsent,
-    alt: "Giao diện thu thập sự đồng ý của FPT CMP",
-    cta: true,
+    title: "Linh hoạt thiết kế trải nghiệm xin sự đồng ý",
+    description: "Tùy chỉnh Cookie banner theo nhận diện thương hiệu và yêu cầu quản trị của doanh nghiệp, đồng thời kiểm soát cách thức hiển thị thông tin và lựa chọn của người dùng.",
+    bullets: ["Tùy chỉnh giao diện theo nhận diện thương hiệu.", "Thiết lập nội dung và cách hiển thị banner.", "Phân loại cookie theo mục đích sử dụng.", "Hỗ trợ quản lý lựa chọn đồng ý hoặc từ chối của người dùng."],
+    image: cookieBanner,
+    alt: "Giao diện Cookie Banner của FPT CMP",
   },
   {
     title: "Lưu lịch sử đồng ý và khả năng truy vết",
