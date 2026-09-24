@@ -243,7 +243,7 @@ export function FptCmpHome() {
       </div>; })()}
     </div></section>
 
-    <section className="section features" id="tinh-nang"><div className="container"><div className="section-heading"><p className="eyebrow">Tính năng cốt lõi</p><h2>Giải pháp quản trị sự đồng ý &amp; Quyền riêng tư dữ liệu</h2><p>FPT CMP giúp doanh nghiệp chuẩn hóa quy trình quản trị Consent, tăng khả năng kiểm soát dữ liệu và hỗ trợ đáp ứng các yêu cầu về bảo vệ dữ liệu cá nhân.</p></div>
+    <section className="section features" id="tinh-nang"><div className="container"><div className="section-heading"><p className="eyebrow">Tính năng cốt lõi</p><h2>Kiểm soát toàn diện quản trị sự đồng ý</h2><p>Tập trung quản lý sự đồng ý, chủ động phát hiện rủi ro và đảm bảo khả năng truy vết trên toàn bộ hệ sinh thái số.</p></div>
       <div className="feature-list">{features.map((feature,index)=><article className={`feature-row ${feature.highlighted ? "feature-highlight" : ""}`} key={feature.title}><div className="feature-copy"><span className="feature-number">0{index+1}</span><h3>{feature.title}</h3><p>{feature.description}</p><ul>{feature.bullets.map((item)=><li key={item}><Check />{item}</li>)}</ul>{feature.cta && <Button onClick={() => scrollTo("dang-ky-demo")}>Đăng ký xem demo <ArrowRight size={18} /></Button>}</div><ProductImage src={feature.image} alt={feature.alt} onOpen={openImage} /></article>)}</div>
     </div></section>
 
